@@ -517,6 +517,11 @@ footer {
   }
 }
 
+.error{
+  font-size: 12px;
+  font-style: italic;
+}
+
 @keyframes modalopen {
   from {
     opacity: 0;
