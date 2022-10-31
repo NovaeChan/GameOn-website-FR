@@ -1,5 +1,8 @@
 # Projet GameOn - Projet OpenClassrooms n°4 
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+
+Projet réalisé dans le cadre de la formation front-end React de Openclassrooms
+
+Technologie utilisées : 
+  - HTML 5
+  - CSS
+  - JavaScript
