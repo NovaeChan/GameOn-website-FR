@@ -25,9 +25,22 @@ function launchModal() {
 close.forEach((btn) => btn.addEventListener("click", closeModal));
 
 //Make the modal not visible
-function closeModal(){
+function closeModal() {
   modalbg.style.display = "none";
 }
 
 
+const formToHide = document.getElementsByName("reserve");
+const modalBody = document.getElementsByClassName('modal-body');
+
+function displayModalSubmitOk() {
+  formToHide.forEach(element => {
+    element.style.display = "none";
+  });
+  let validateBlock = document.createElement('div');
+  validateBlock.innerHTML = '<span class=formValidated>Merci ! Votre réservation a été reçue. </span><br> <button class="btn-submit buttonFormValidated" id="buttonFormValidated">Fermer</button>';
+  modalBody[0].appendChild(validateBlock);
+  buttonFormValidated.addEventListener("click", closeModal);
+
+}
 

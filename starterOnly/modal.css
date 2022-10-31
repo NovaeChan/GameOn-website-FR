@@ -517,10 +517,27 @@ footer {
   }
 }
 
+.formData{
+  display: block;
+  margin-bottom: 10px;
+}
+
 .error{
   font-size: 12px;
   font-style: italic;
+  margin-bottom: 10px;
 }
+.condition{
+  position: relative;
+  top: -10px;
+}
+.formValidated{
+  margin-bottom: 10px;
+}
+.buttonFormValidated{
+  margin-top: 15px;
+}
+
 
 @keyframes modalopen {
   from {

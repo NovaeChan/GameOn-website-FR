@@ -54,7 +54,7 @@
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
-          <form name="reserve" action="index.html" method="get">
+          <form name="reserve" action="index.html" method="get" novalidate>
             <div class="formData">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2"><br>
@@ -81,7 +81,7 @@
               <span class="error"></span>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-            <div class="formData">
+            <div class="formData" id="locations">
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York">
               <label class="checkbox-label" for="location1">
                 <span class="checkbox-icon"></span>
@@ -106,6 +106,7 @@
               <label class="checkbox-label" for="location6">
                 <span class="checkbox-icon"></span>
                 Portland</label>
+                <br>
                 <span class="error"></span>
             </div>
 
@@ -122,7 +123,7 @@
                 Je Je souhaite être prévenu des prochains évènements.
               </label>
               <br>
-              <span class="error"></span>
+              <span class="error"></span><br>
             </div>
             <input class="btn-submit button" type="submit" value="C'est parti">
           </form>

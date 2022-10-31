@@ -1,4 +1,4 @@
-//Store all input and form 
+//Store all input and form
 const form = document.querySelector("form");
 
 const firstName = document.getElementById("first");
@@ -6,12 +6,15 @@ const lastName = document.getElementById("last");
 const mail = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-// const location = document.getElementById("location");
+
+const locationsBlock = document.getElementById('locations');
+const locations = document.getElementsByName("location");
 const checkbox1 = document.getElementById("checkbox1");
 
-//Colors input border;
+//Colors input border
 const inputWrong = "3px solid #f7483b";
 const inputGood = "3px solid #52ff7d";
+
 //Regex for email check
 const regexMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
@@ -22,14 +25,12 @@ mail.addEventListener("keyup", verifyMail);
 birthdate.addEventListener("focusout", verifyBirthdate);
 quantity.addEventListener("keyup", verifyQuantity);
 checkbox1.addEventListener("change", verifyCheckbox);
+locationsBlock.addEventListener("change", verifyLocation);
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     if(formValidation()){
-        console.log("Formulaire validé");
-    }
-    else {
-        console.log("Formulaire non valide");
+        displayModalSubmitOk();
     }
 })
 
@@ -37,10 +38,11 @@ function formValidation(){
     let first = verifyFirstName();
     let last = verifyLastName();
     let mail = verifyMail();
-    // let birthdate = verifyBirthdate();
+    let birthdate = verifyBirthdate();
     let quantity = verifyQuantity();
+    let locations = verifyLocation();
     let checkbox1 = verifyCheckbox();
-    if(first && last && mail && quantity && checkbox1){
+    if(first && last && mail && birthdate && quantity && locations && checkbox1){
         return true;
     }
     return false;
@@ -48,7 +50,7 @@ function formValidation(){
 
 //
 //
-// FAUT IL VERIF AU CAS OU IL Y A UN ESPACE ? 
+// RETIRER LES ESPACES A LA FIN 
 //
 //
 
@@ -58,9 +60,9 @@ function verifyFirstName(){
     const parent = firstName.parentNode;
     //Then try to find the span inside the parent node
     const displayError = parent.querySelector('span');
-    if(firstName.value.length < 2){
+    if(firstName.value.trim().length < 2){
         //Add a text error into the span
-        displayError.textContent = "Il faut au moins deux caractères pour le prénom";
+        displayError.textContent = "Veuillez entrer 2 caractères ou plus pour le champ du prénom";
         firstName.style.border = inputWrong;
         return false;
     }
@@ -74,9 +76,9 @@ function verifyLastName(){
     const parent = lastName.parentNode;
     //Then try to find the span inside the parent node
     const displayError = parent.querySelector('span');
-    if(lastName.value.length < 2 ){
+    if(lastName.value.trim().length < 2 ){
         //Ad a text error
-        displayError.textContent = "Il faut au moins deux caractères pour le nom de famille";
+        displayError.textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom";
         lastName.style.border = inputWrong;
         return false;
     }
@@ -105,14 +107,14 @@ function verifyBirthdate(){
     const parent = birthdate.parentNode;
     const displayError = parent.querySelector('span');
     if(!birthdate.value){
-        displayError.textContent = "Ce n'est pas une date de naissance valide";
+        displayError.textContent = "Vous devez entrer votre date de naissance.";
         birthdate.style.border = inputWrong;
+        return false;
     }
     else{
         displayError.textContent = "";
         birthdate.style.border = inputGood;
-        console.log("C'est bien une date");
-
+        return true
     }
 }
 
@@ -139,9 +141,21 @@ function verifyCheckbox(){
     const displayError = parent.querySelector('.error');
     if(checkbox1.checked == false){
         //And lastly add a text error
-        displayError.textContent = "Vous devez accepter les conditions d'utilisation";
+        displayError.textContent = "Vous devez accepter les termes et conditions.";
         return false;
     }
     displayError.textContent="";
     return true;
+}
+
+function verifyLocation(){
+    const displayError = locationsBlock.querySelector(".error");
+    for(let i = 0; i < locations.length; i++){
+        if(locations[i].checked){
+            displayError.textContent = "";
+            return true;
+        }
+    }
+    displayError.textContent = "Vous devez choisir une option";
+    return false;
 }
