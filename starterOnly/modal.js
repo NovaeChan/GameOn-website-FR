@@ -33,12 +33,14 @@ function closeModal() {
 const formToHide = document.getElementsByName("reserve");
 const modalBody = document.getElementsByClassName('modal-body');
 
+//Display a confirmation message after validation of form
 function displayModalSubmitOk() {
   formToHide.forEach(element => {
     element.style.display = "none";
   });
   let validateBlock = document.createElement('div');
-  validateBlock.innerHTML = '<span class=formValidated>Merci ! Votre réservation a été reçue. </span><br> <button class="btn-submit buttonFormValidated" id="buttonFormValidated">Fermer</button>';
+  validateBlock.classList.add("blockValidated");
+  validateBlock.innerHTML = '<span class=formValidated>Merci pour<br> votre inscription</span><br> <button class="btn-submit buttonFormValidated" id="buttonFormValidated">Fermer</button>';
   modalBody[0].appendChild(validateBlock);
   buttonFormValidated.addEventListener("click", closeModal);
 
